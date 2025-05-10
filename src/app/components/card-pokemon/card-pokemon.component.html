@@ -1,10 +1,9 @@
-<div id="card-pokemon">
-  <img src="../../../assets/flecha.png" alt="">
-  <div id="card">
-    <div id="circle">
-      <img src="" alt="">
-      <span></span>
-      <span></span>
-    </div>
+<div id="card-pokemon" (click)="selected()" [ngClass]="{seleccionado: seleccionado}">
+  <img id="flecha" src="../../../assets/flecha.png" [ngClass]="{invisible: !seleccionado}">
+  <div id="tarjeta" [ngClass]="{seleccionado: seleccionado}">
+    <div id="circle"></div>
+    <img *ngIf="fullData" src="{{fullData.sprites.front_default}}" >
+    <span>No. {{id}}</span>
+    <span *ngIf="data">{{data.name | titlecase}}</span>
   </div>
 </div>

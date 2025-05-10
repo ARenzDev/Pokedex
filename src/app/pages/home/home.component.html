@@ -1,12 +1,20 @@
 <main id="container">
-  <app-photo-pokemon></app-photo-pokemon>
-  <div id="container-cards">
-    <app-card-pokemon></app-card-pokemon>
-    <app-card-pokemon></app-card-pokemon>
-    <app-card-pokemon></app-card-pokemon>
-    <app-card-pokemon></app-card-pokemon>
-    <app-card-pokemon></app-card-pokemon>
-    <app-card-pokemon></app-card-pokemon>
-    <app-card-pokemon></app-card-pokemon>
+  <app-photo-pokemon
+    [src]="pokemonSeleccionado?.sprites?.front_default"
+    [alt]="pokemonSeleccionado?.name"
+  ></app-photo-pokemon>
+  <div id="container-cards" #cardsElement (scroll)="onScroll($event)">
+    <app-card-pokemon
+      *ngFor="let pokemon of pokemonList"
+      [data]="pokemon"
+      (clicked)="tarjetaClickeada($event)"
+      [seleccionado]="pokemonSeleccionado?.name === pokemon.name"
+    ></app-card-pokemon>
+    <img
+      src="../../../assets/spinner.svg"
+      alt="Cargando"
+      id="spinner"
+      *ngIf="cargando"
+    />
   </div>
 </main>
